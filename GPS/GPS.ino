@@ -2,10 +2,10 @@
 * ESP32 GPS VKEL 9600 Bds
 ******************************************/
 
-#include <TinyGPS++.h>                       
+#include <TinyGPS++.h>     
+#include "HardwareSerial.h"                  
 
-TinyGPSPlus gps;                            
-HardwareSerial Serial1(1);                 
+TinyGPSPlus gps;                                       
 
 void setup()
 {
@@ -47,4 +47,3 @@ static void smartDelay(unsigned long ms)
       gps.encode(Serial1.read());
   } while (millis() - start < ms);
 }
-
