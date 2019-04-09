@@ -1,7 +1,17 @@
+//#include <OLEDDisplay.h>
+//#include <OLEDDisplayFonts.h>
+//#include <OLEDDisplayUi.h>
+//#include <SH1106.h>
+//#include <SH1106Brzo.h>
+//#include <SH1106Spi.h>
+//#include <SH1106Wire.h>
+//#include <SSD1306Brzo.h>
+//#include <SSD1306Spi.h>
+//#include <SSD1306Wire.h>
+#include <SSD1306.h>
 #include <SPI.h>
 #include <LoRa.h>
 #include <Wire.h>  
-//#include "SSD1306.h" 
 #include "images.h"
 
 #define SCK     5    // GPIO5  -- SX1278's SCK
@@ -14,7 +24,7 @@
 
 unsigned int counter = 0;
 
-//SSD1306 display(0x3c, 21, 22);
+SSD1306 display(0x3c, 21, 22);
 String rssi = "RSSI --";
 String packSize = "--";
 String packet ;
@@ -43,26 +53,26 @@ void setup() {
   //LoRa.onReceive(cbk);
 //  LoRa.receive();
   Serial.println("init ok");
-//  display.init();
-//  display.flipScreenVertically();  
-//  display.setFont(ArialMT_Plain_10);
+  display.init();
+  display.flipScreenVertically();  
+  display.setFont(ArialMT_Plain_10);
    
   delay(1500);
 }
 
 void loop() {
-//  display.clear();
-//  display.setTextAlignment(TEXT_ALIGN_LEFT);
-//  display.setFont(ArialMT_Plain_10);
-//  
-//  display.drawString(0, 0, "Sending packet: ");
-//  display.drawString(90, 0, String(counter));
+  display.clear();
+  display.setTextAlignment(TEXT_ALIGN_LEFT);
+  display.setFont(ArialMT_Plain_10);
+  
+  display.drawString(0, 0, "Sending packet: ");
+  display.drawString(90, 0, String(counter));
   Serial.println(String(counter));
-//  display.display();
+  display.display();
 
   // send packet
   LoRa.beginPacket();
-  LoRa.print("hello");
+  LoRa.print("Mario_viadao");
   LoRa.print(counter);
   LoRa.endPacket();
 
