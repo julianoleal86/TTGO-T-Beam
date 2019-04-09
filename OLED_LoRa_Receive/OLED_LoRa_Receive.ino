@@ -1,7 +1,8 @@
+
 #include <SPI.h>
 #include <LoRa.h>
 #include <Wire.h>  
-//#include "SSD1306.h" 
+#include <SSD1306.h> 
 #include "images.h"
 
 #define SCK     5    // GPIO5  -- SX1278's SCK
@@ -12,20 +13,20 @@
 #define DI0     26   // GPIO26 -- SX1278's IRQ(Interrupt Request)
 #define BAND    433E6 //868E6
 
-//SSD1306 display(0x3c, 21, 22);
+SSD1306 display(0x3c, 21, 22);
 String rssi = "RSSI --";
 String packSize = "--";
 String packet ;
 
 
 void loraData(){
-//  display.clear();
-//  display.setTextAlignment(TEXT_ALIGN_LEFT);
-//  display.setFont(ArialMT_Plain_10);
-//  display.drawString(0 , 15 , "Received "+ packSize + " bytes");
-//  display.drawStringMaxWidth(0 , 26 , 128, packet);
-//  display.drawString(0, 0, rssi); 
-//  display.display();
+  display.clear();
+  display.setTextAlignment(TEXT_ALIGN_LEFT);
+  display.setFont(ArialMT_Plain_10);
+  display.drawString(0 , 15 , "Received "+ packSize + " bytes");
+  display.drawStringMaxWidth(0 , 26 , 128, packet);
+  display.drawString(0, 0, rssi); 
+  display.display();
    Serial.println(packSize);
    Serial.println(packet);
    Serial.println(rssi);
@@ -64,10 +65,10 @@ void setup() {
   //LoRa.onReceive(cbk);
   LoRa.receive();
   Serial.println("init ok");
-//  display.init();
-//  display.flipScreenVertically();  
-//  display.setFont(ArialMT_Plain_10);
-   
+  display.init();
+ display.flipScreenVertically();  
+  display.setFont(ArialMT_Plain_10);
+  
   delay(1500);
 }
 
